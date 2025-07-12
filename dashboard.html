@@ -62,6 +62,16 @@
   <h2>Matched Card: {{ card.Name }}</h2>
   <img src="{{ url_for('static', filename='images/' + card.Name + '.jpg') }}" alt="{{ card.Name }} card" width="200">
 {% endif %}
+
+<style>
+  .card-preview {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+  }
+</style>
     
     <h2>Restock Packaging</h2>
     <form action="/restock" method="post">
