@@ -60,7 +60,9 @@
 
 {% if card %}
   <h2>Matched Card: {{ card.Name }}</h2>
-  <img src="{{ url_for('static', filename='images/' + card.Name + '.jpg') }}" alt="{{ card.Name }} card" width="200">
+ <img class="card-preview" src="{{ url_for('static', filename='images/' + card.Name + '.jpg') }}"
+     alt="{{ card.Name }} card"
+     onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/default.jpg') }}';"> 
 {% endif %}
 
 <style>
