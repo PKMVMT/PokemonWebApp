@@ -58,6 +58,11 @@
         {% endfor %}
     </table>
 
+{% if card %}
+  <h2>Matched Card: {{ card.Name }}</h2>
+  <img src="{{ url_for('static', filename='images/' + card.Name + '.jpg') }}" alt="{{ card.Name }} card" width="200">
+{% endif %}
+    
     <h2>Restock Packaging</h2>
     <form action="/restock" method="post">
         <label>Item:</label><br>
