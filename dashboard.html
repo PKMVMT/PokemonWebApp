@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokémon Dashboard</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #fafafa; }
+        table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; }
+        th { background-color: #eee; }
+        h2 { margin-top: 40px; }
+    </style>
+</head>
+<body>
+    <h1>Pokémon Inventory Viewer</h1>
+    <table>
+        <tr>
+            <th>Name</th><th>Set</th><th>Condition</th><th>Rarity</th>
+            <th>Estimated Value</th><th>Quantity</th><th>Foil Type</th>
+        </tr>
+        {% for card in cards %}
+        <tr>
+            <td>{{ card.Name }}</td>
+            <td>{{ card.Set }}</td>
+            <td>{{ card.Condition }}</td>
+            <td>{{ card.Rarity }}</td>
+            <td>${{ card.EstimatedValue }}</td>
+            <td>{{ card.Quantity }}</td>
+            <td>{{ card.FoilType }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Log a Card Sale</h2>
+    <form action="/log_sale" method="post">
+        <label>Card Name:</label><br>
+        <input name="name" required><br><br>
+
+        <label>Quantity Sold:</label><br>
+        <input name="quantity" type="number" min="1" required><br><br>
+
+        <label>Sale Price ($):</label><br>
+        <input name="price" required><br><br>
+
+        <label>Packaging Used:</label><br>
+        <input name="packaging" required><br><br>
+
+        <button type="submit">Submit Sale</button>
+    </form>
+
+    <h2>Packaging Inventory</h2>
+    <table>
+        <tr><th>Item</th><th>Quantity</th></tr>
+        {% for item in packaging %}
+        <tr>
+            <td>{{ item.Item }}</td>
+            <td>{{ item.Quantity }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h2>Restock Packaging</h2>
+    <form action="/restock" method="post">
+        <label>Item:</label><br>
+        <input name="restock_item" required><br><br>
+
+        <label>Quantity to Add:</label><br>
+        <input name="restock_amount" type="number" min="1" required><br><br>
+
+        <button type="submit">Restock</button>
+    </form>
+</body>
+</html>
